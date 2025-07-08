@@ -2,137 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agustín Marquardt | Portfolio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
-    nav {
-      position: fixed; top: 0; width: 100%; background: #ffffffcc;
-      backdrop-filter: blur(8px); box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem; max-width: 1000px; margin: auto; }
-    nav a { color: #005c99; text-decoration: none; margin: 0 .75rem; font-weight: 500; }
-    nav a:hover { opacity: .7; }
-    header.hero {
-      display: flex; align-items: center; justify-content: center;
-      height: 70vh; background: url('hero-bg.jpg') center/cover no-repeat;
-      position: relative; text-align: center;
-    }
-    header.hero::after {
-      content: ""; position: absolute; inset: 0;
-      background: rgba(0,0,0,0.5);
-    }
-    header.hero .intro {
-      position: relative; color: #fff;
-    }
-    header.hero .intro h1 { font-size: 2.5rem; margin-bottom: .5rem; }
-    header.hero .intro p { font-size: 1.2rem; }
-    .container { max-width: 900px; padding: 4rem 1rem; margin: auto; }
-    h2 { color: #005c99; margin-bottom: 1rem; }
-    .grid {
-      display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 1.25rem;
-      transition: transform .2s;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .card h3 { margin-bottom: .5rem; color: #005c99; }
-    .card p { margin-bottom: .75rem; font-size: .95rem; }
-    form input, form textarea {
-      width: 100%; padding: .75rem; margin-bottom: 1rem;
-      border: 1px solid #ccc; border-radius: 4px;
-    }
-    form button {
-      background: #005c99; color: #fff; border: none;
-      padding: .85rem 1.5rem; cursor: pointer; border-radius: 4px;
-    }
-    form button:hover { opacity: .9; }
-    footer { text-align: center; padding: 1.5rem 0; color: #666; }
-    @media (max-width: 600px) {
-      header.hero h1 { font-size: 2rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <div class="container">
-      <a href="#hero"><strong>Marquardt</strong></a>
-      <div>
-        <a href="#about">Sobre mí</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#contact">Contacto</a>
-      </div>
-    </div>
-  </nav>
+  <aside>
+    <img src="foto.jpg" alt="Agustín Marquardt">
+    <h1>Agustín Marquardt</h1>
+    <nav>
+      <a href="#inicio">🏠 Inicio</a>
+      <a href="#sobremi">👤 Sobre mí</a>
+      <a href="#resumen">📄 Resumen</a>
+      <a href="#portafolio">📁 Portafolio</a>
+      <a href="#laborales">💼 Proyectos Laborales</a>
+      <a href="#universitarios">🎓 Proyectos Universitarios</a>
+      <a href="#contacto">✉️ Contacto</a>
+      <a href="cv.pdf" download>📥 Descargar CV</a>
+      <a href="#idioma">🌐 Idioma</a>
+    </nav>
+  </aside>
 
-  <header id="hero" class="hero">
-    <div class="intro">
-      <h1>Agustín Marquardt</h1>
-      <p>Analista Funcional & Líder de Equipos | Innovación con IA y Sistemas</p>
-    </div>
-  </header>
+  <main>
+    <section id="inicio">
+      <h2>Inicio</h2>
+      <p>Bienvenido a mi portfolio profesional.</p>
+    </section>
 
-  <section id="about" class="container">
-    <h2>Sobre mí</h2>
-    <p>Soy analista funcional con foco en tecnología aplicada a organizaciones. Trabajo liderando proyectos de automatización, inteligencia artificial aplicada, sistemas CRM y gestión interna en empresas de salud. Me especializo en traducir necesidades de negocio en soluciones digitales concretas.</p>
-    <p>Experiencia en Salesforce, JIRA, bots con GPT‑4.1, modelos predictivos en R, BI, ETL y metodologías ágiles.</p>
-  </section>
+    <section id="sobremi">
+      <h2>Sobre mí</h2>
+      <div class="profile-section">
+        <img src="foto.jpg" alt="Foto de Agustín Marquardt">
+        <div class="profile-details">
+          <h3>Analista Funcional & Estudiante de Ingeniería en Sistemas</h3>
+          <em>"Impulso soluciones tecnológicas eficientes, humanas y automatizadas. Me apasiona unir negocio con innovación."</em>
+          <div class="profile-grid">
+            <div><span><strong>📅 Fecha Nac.:</strong> 03 Mar 1997</span></div>
+            <div><span><strong>🎂 Edad:</strong> 28</span></div>
+            <div><span><strong>🎓 Grado:</strong> 5° Año Ingeniería en Sistemas (UTN)</span></div>
+            <div><span><strong>📧 Email:</strong> agustinmarquardt@gmail.com</span></div>
+            <div><span><strong>📱 Teléfono:</strong> +54 341 254-2255</span></div>
+            <div><span><strong>🌍 Ciudad:</strong> Rosario, Santa Fe, Argentina</span></div>
+            <div><span><strong>💼 Nacionalidad:</strong> Argentino</span></div>
+            <div><span><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/agustinmarquardt/" target="_blank">Perfil</a></span></div>
+          </div>
+          <p>Estoy en constante formación en el área de sistemas y automatización, buscando siempre soluciones escalables y sostenibles para las organizaciones. Me enfoco en transformar necesidades reales en herramientas digitales de impacto.</p>
+        </div>
+      </div>
+    </section>
 
-  <section id="projects" class="container">
-    <h2>Proyectos</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>AVA IA Bot</h3>
-        <p>Asistente interno que integra Ollama + GPT‑4.1 para responder sobre sistemas, RRHH y procesos. Base documental estructurada.</p>
-        <p><strong>Rol:</strong> Líder funcional.</p>
-      </div>
-      <div class="card">
-        <h3>AviaX</h3>
-        <p>Plataforma digital para gestión de viajes de negocio, integrando rendiciones, reservas y políticas de gasto.</p>
-        <p><strong>Rol:</strong> Funcional clave, definición de alcance y validación UX/UI.</p>
-      </div>
-      <div class="card">
-        <h3>Módulo Ventas Avalian</h3>
-        <p>Herramienta de gestión comercial para asesores. Automatiza seguimiento de oportunidades, contactos y propuestas.</p>
-        <p><strong>Rol:</strong> Analista funcional y enlace con área comercial.</p>
-      </div>
-      <div class="card">
-        <h3>Predicción de candidatos Avalian</h3>
-        <p>Modelo en R que identifica perfiles con alta probabilidad de ingreso exitoso según variables del proceso de selección.</p>
-        <p><strong>Rol:</strong> Modelador e integrador con RRHH.</p>
-      </div>
-      <div class="card">
-        <h3>Administrador JIRA</h3>
-        <p>Configuración y mantenimiento de múltiples proyectos Service Desk para distintas áreas. Integraciones vía API y automatizaciones.</p>
-        <p><strong>Rol:</strong> Administrador general.</p>
-      </div>
-      <div class="card">
-        <h3>Administrador Sprout</h3>
-        <p>Gestión de la plataforma de redes sociales corporativas. Optimización de procesos de publicación y métricas internas.</p>
-        <p><strong>Rol:</strong> Administrador de canal y soporte a Comunicación.</p>
-      </div>
-    </div>
-  </section>
+    <section id="resumen">
+      <h2>Resumen</h2>
+      <p>Experiencia en Salesforce, JIRA, bots con GPT‑4.1, modelos predictivos en R, BI, ETL y metodologías ágiles.</p>
+    </section>
 
-  <section id="contact" class="container">
-    <h2>Contacto</h2>
-    <form action="https://formspree.io/f/tuformid" method="POST">
-      <input type="text" name="name" placeholder="Tu nombre" required>
-      <input type="email" name="email" placeholder="Tu email" required>
-      <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <p>Podes escribirme también a: <a href="mailto:agustin@email.com">agustin@email.com</a></p>
-  </section>
+    <section id="portafolio">
+      <h2>Portafolio</h2>
+      <p>Listado general de proyectos destacados.</p>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Agustín Marquardt</p>
-  </footer>
+    <section id="laborales">
+      <h2>Proyectos Laborales</h2>
+      <ul>
+        <li>AVA IA Bot</li>
+        <li>AviaX</li>
+        <li>Módulo Ventas Avalian</li>
+        <li>Predicción de candidatos Avalian</li>
+        <li>Administrador JIRA</li>
+        <li>Administrador Sprout</li>
+      </ul>
+    </section>
+
+    <section id="universitarios">
+      <h2>Proyectos Universitarios</h2>
+      <p>Aquí se detallarán proyectos realizados en el ámbito académico.</p>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Email: <a href="mailto:agustinmarquardt@gmail.com">agustinmarquardt@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/agustinmarquardt/" target="_blank">linkedin.com/in/agustinmarquardt</a></p>
+    </section>
+
+    <section id="idioma">
+      <h2>Idioma</h2>
+      <p>Español | Inglés</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Agustín Marquardt</p>
+    </footer>
+  </main>
 
 </body>
 </html>
