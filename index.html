@@ -2,91 +2,137 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agustín Marquardt | Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f7f7f7;
-      color: #333;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
+    nav {
+      position: fixed; top: 0; width: 100%; background: #ffffffcc;
+      backdrop-filter: blur(8px); box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
-    header {
-      background-color: #005c99;
-      color: white;
-      padding: 2rem;
-      text-align: center;
+    nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem; max-width: 1000px; margin: auto; }
+    nav a { color: #005c99; text-decoration: none; margin: 0 .75rem; font-weight: 500; }
+    nav a:hover { opacity: .7; }
+    header.hero {
+      display: flex; align-items: center; justify-content: center;
+      height: 70vh; background: url('hero-bg.jpg') center/cover no-repeat;
+      position: relative; text-align: center;
     }
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+    header.hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.5);
     }
-    h2 {
-      color: #005c99;
+    header.hero .intro {
+      position: relative; color: #fff;
     }
-    .proyecto {
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
+    header.hero .intro h1 { font-size: 2.5rem; margin-bottom: .5rem; }
+    header.hero .intro p { font-size: 1.2rem; }
+    .container { max-width: 900px; padding: 4rem 1rem; margin: auto; }
+    h2 { color: #005c99; margin-bottom: 1rem; }
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 1.5rem;
     }
-    footer {
-      background-color: #222;
-      color: #aaa;
-      text-align: center;
-      padding: 1rem;
+    .card {
+      background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1.25rem;
+      transition: transform .2s;
     }
-    a {
-      color: #005c99;
-      text-decoration: none;
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { margin-bottom: .5rem; color: #005c99; }
+    .card p { margin-bottom: .75rem; font-size: .95rem; }
+    form input, form textarea {
+      width: 100%; padding: .75rem; margin-bottom: 1rem;
+      border: 1px solid #ccc; border-radius: 4px;
+    }
+    form button {
+      background: #005c99; color: #fff; border: none;
+      padding: .85rem 1.5rem; cursor: pointer; border-radius: 4px;
+    }
+    form button:hover { opacity: .9; }
+    footer { text-align: center; padding: 1.5rem 0; color: #666; }
+    @media (max-width: 600px) {
+      header.hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Agustín Marquardt</h1>
-    <p>Analista Funcional | Líder de Equipos | Innovación en Tecnología Organizacional</p>
+  <nav>
+    <div class="container">
+      <a href="#hero"><strong>Marquardt</strong></a>
+      <div>
+        <a href="#about">Sobre mí</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#contact">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="hero">
+    <div class="intro">
+      <h1>Agustín Marquardt</h1>
+      <p>Analista Funcional & Líder de Equipos | Innovación con IA y Sistemas</p>
+    </div>
   </header>
 
-  <section>
+  <section id="about" class="container">
     <h2>Sobre mí</h2>
     <p>Soy analista funcional con foco en tecnología aplicada a organizaciones. Trabajo liderando proyectos de automatización, inteligencia artificial aplicada, sistemas CRM y gestión interna en empresas de salud. Me especializo en traducir necesidades de negocio en soluciones digitales concretas.</p>
-    <p>Experto en Salesforce, JIRA, automatización con asistentes virtuales, IA conversacional (GPT-4.1), modelado en R, y plataformas BI.</p>
+    <p>Experiencia en Salesforce, JIRA, bots con GPT‑4.1, modelos predictivos en R, BI, ETL y metodologías ágiles.</p>
   </section>
 
-  <section>
+  <section id="projects" class="container">
     <h2>Proyectos</h2>
-
-    <div class="proyecto">
-      <h3>AVA Bot</h3>
-      <p>Asistente interno para empleados de Avalian. Responde preguntas sobre sistemas, RRHH, procesos y políticas internas. Integra documentos estructurados, usando Ollama + GPT-4.1 + WebUI.</p>
-      <p><strong>Rol:</strong> Líder del proyecto y diseñador funcional.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>AVA IA Bot</h3>
+        <p>Asistente interno que integra Ollama + GPT‑4.1 para responder sobre sistemas, RRHH y procesos. Base documental estructurada.</p>
+        <p><strong>Rol:</strong> Líder funcional.</p>
+      </div>
+      <div class="card">
+        <h3>AviaX</h3>
+        <p>Plataforma digital para gestión de viajes de negocio, integrando rendiciones, reservas y políticas de gasto.</p>
+        <p><strong>Rol:</strong> Funcional clave, definición de alcance y validación UX/UI.</p>
+      </div>
+      <div class="card">
+        <h3>Módulo Ventas Avalian</h3>
+        <p>Herramienta de gestión comercial para asesores. Automatiza seguimiento de oportunidades, contactos y propuestas.</p>
+        <p><strong>Rol:</strong> Analista funcional y enlace con área comercial.</p>
+      </div>
+      <div class="card">
+        <h3>Predicción de candidatos Avalian</h3>
+        <p>Modelo en R que identifica perfiles con alta probabilidad de ingreso exitoso según variables del proceso de selección.</p>
+        <p><strong>Rol:</strong> Modelador e integrador con RRHH.</p>
+      </div>
+      <div class="card">
+        <h3>Administrador JIRA</h3>
+        <p>Configuración y mantenimiento de múltiples proyectos Service Desk para distintas áreas. Integraciones vía API y automatizaciones.</p>
+        <p><strong>Rol:</strong> Administrador general.</p>
+      </div>
+      <div class="card">
+        <h3>Administrador Sprout</h3>
+        <p>Gestión de la plataforma de redes sociales corporativas. Optimización de procesos de publicación y métricas internas.</p>
+        <p><strong>Rol:</strong> Administrador de canal y soporte a Comunicación.</p>
+      </div>
     </div>
-
-    <div class="proyecto">
-      <h3>Predicción de bajas de LEADS</h3>
-      <p>Modelo predictivo desarrollado en R para identificar leads con alta probabilidad de baja, integrado a CRM Salesforce. Permite generar alertas tempranas y campañas preventivas.</p>
-      <p><strong>Rol:</strong> Autor del modelo e integrador funcional con marketing.</p>
-    </div>
-
-    <div class="proyecto">
-      <h3>Avapocket</h3>
-      <p>Aplicación web y móvil que permite cargar viáticos, generar rendiciones y obtener devoluciones. Reemplaza herramienta costosa anterior e integra con CORE financiero interno.</p>
-      <p><strong>Rol:</strong> Líder funcional, validación con sponsors y diseño de mejoras.</p>
-    </div>
-
   </section>
 
-  <section>
+  <section id="contact" class="container">
     <h2>Contacto</h2>
-    <p>Puedes contactarme vía <a href="mailto:agustin@email.com">agustin@email.com</a> o visitar mi perfil de <a href="https://www.linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>.</p>
+    <form action="https://formspree.io/f/tuformid" method="POST">
+      <input type="text" name="name" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu email" required>
+      <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p>Podes escribirme también a: <a href="mailto:agustin@email.com">agustin@email.com</a></p>
   </section>
 
   <footer>
     <p>&copy; 2025 Agustín Marquardt</p>
   </footer>
+
 </body>
 </html>
