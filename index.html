@@ -1,98 +1,630 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agustín Marquardt | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agustín Marquardt — Portfolio Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F0;
+    --bg-card: #FFFFFF;
+    --text: #1A1915;
+    --text-muted: #6B6860;
+    --text-hint: #9E9C96;
+    --border: rgba(26,25,21,0.1);
+    --border-hover: rgba(26,25,21,0.2);
+    --accent: #2D5A3D;
+    --accent-light: #E8F0EB;
+    --tag-avalian-bg: #EBF0FF;
+    --tag-avalian-text: #2A3FA0;
+    --tag-gamma-bg: #FFF3E8;
+    --tag-gamma-text: #8B4A15;
+    --tag-grande-bg: #FFF8E1;
+    --tag-grande-text: #7A5C00;
+    --tag-mediano-bg: #EDF5FF;
+    --tag-mediano-text: #1A4B8C;
+    --tag-lider-bg: #E8F5EE;
+    --tag-lider-text: #1A5C34;
+    --tag-admin-bg: #F0EEFF;
+    --tag-admin-text: #3D2A8C;
+    --tag-funcional-bg: #FFF0EE;
+    --tag-funcional-text: #8C2A1E;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 18px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  .hero { padding: 5rem 0 4rem; }
+  .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--accent); }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); line-height: 1.1; color: var(--text); margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--text-muted); }
+  .hero-bio { font-size: 16px; color: var(--text-muted); line-height: 1.75; max-width: 560px; margin-bottom: 2rem; }
+  .hero-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .chip { font-size: 12px; padding: 5px 12px; border-radius: 99px; border: 1px solid var(--border); color: var(--text-muted); background: var(--bg-card); }
+  .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: var(--radius-md); background: var(--text); color: var(--bg); font-size: 13px; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: var(--radius-md); background: transparent; color: var(--text); font-size: 13px; font-weight: 500; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-card); }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 5rem; }
+  .stat { background: var(--bg-card); padding: 1.5rem; }
+  .stat-val { font-family: var(--font-display); font-size: 32px; color: var(--text); display: block; line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 12px; color: var(--text-hint); }
+
+  /* SECTION */
+  .section { margin-bottom: 5rem; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 12px; }
+  .section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-hint); display: flex; align-items: center; gap: 8px; }
+  .section-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--text-hint); }
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ftag { font-size: 12px; padding: 4px 12px; border-radius: 99px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: var(--font-body); }
+  .ftag:hover { border-color: var(--border-hover); color: var(--text); }
+  .ftag.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  /* PROJECT CARDS */
+  .projects { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .pcard { background: var(--bg-card); transition: background 0.15s; }
+  .pcard-header { padding: 1.5rem; cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .pcard-header:hover { background: rgba(26,25,21,0.02); }
+  .pcard-left { flex: 1; }
+  .pcard-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tag { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+  .tag-empresa-avalian { background: var(--tag-avalian-bg); color: var(--tag-avalian-text); }
+  .tag-empresa-gamma { background: var(--tag-gamma-bg); color: var(--tag-gamma-text); }
+  .tag-grande { background: var(--tag-grande-bg); color: var(--tag-grande-text); }
+  .tag-mediano { background: var(--tag-mediano-bg); color: var(--tag-mediano-text); }
+  .tag-lider { background: var(--tag-lider-bg); color: var(--tag-lider-text); }
+  .tag-admin { background: var(--tag-admin-bg); color: var(--tag-admin-text); }
+  .tag-funcional { background: var(--tag-funcional-bg); color: var(--tag-funcional-text); }
+  .pcard-title { font-family: var(--font-display); font-size: 20px; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+  .pcard-impact { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .chevron { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 4px; transition: transform 0.25s, background 0.15s; font-size: 10px; color: var(--text-muted); }
+  .chevron.open { transform: rotate(180deg); background: var(--bg); }
+
+  .pcard-detail { display: none; border-top: 1px solid var(--border); padding: 1.5rem; background: rgba(247,245,240,0.5); }
+  .pcard-detail.open { display: block; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  @media (max-width: 560px) { .detail-grid { grid-template-columns: 1fr; } }
+  .detail-block {}
+  .detail-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-hint); margin-bottom: 6px; }
+  .detail-val { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .detail-list-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-hint); margin-bottom: 8px; }
+  .detail-list { padding-left: 1rem; margin-bottom: 1.25rem; }
+  .detail-list li { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 4px; }
+  .impact-box { background: var(--accent-light); border-radius: var(--radius-md); padding: 1rem 1.25rem; display: flex; gap: 10px; align-items: flex-start; margin-bottom: 1.25rem; }
+  .impact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex-shrink: 0; }
+  .impact-text { font-size: 13px; color: var(--accent); line-height: 1.6; font-weight: 500; }
+  .stack-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .stack-chip { font-size: 11px; padding: 3px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); color: var(--text-hint); background: var(--bg-card); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .skill-card { background: var(--bg-card); padding: 1.25rem; }
+  .skill-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .skill-sub { font-size: 12px; color: var(--text-hint); line-height: 1.5; }
+
+  /* CTA */
+  .cta-section { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; background: var(--bg-card); }
+  .cta-text h3 { font-family: var(--font-display); font-size: 24px; margin-bottom: 4px; }
+  .cta-text p { font-size: 13px; color: var(--text-muted); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; }
+  footer p { font-size: 12px; color: var(--text-hint); }
+
+  /* MODAL AGREGAR PROYECTO */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(26,25,21,0.5); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--bg-card); border-radius: var(--radius-lg); padding: 2rem; width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .modal-title { font-family: var(--font-display); font-size: 22px; }
+  .modal-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: transparent; cursor: pointer; font-size: 16px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+  .modal-close:hover { background: var(--bg); }
+  .form-row { margin-bottom: 1.25rem; }
+  .form-label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-hint); display: block; margin-bottom: 6px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 9px 12px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--bg);
+    color: var(--text); font-family: var(--font-body); font-size: 14px;
+    outline: none; transition: border-color 0.15s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--border-hover); }
+  .form-textarea { min-height: 80px; resize: vertical; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-hint { font-size: 11px; color: var(--text-hint); margin-top: 4px; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1.5rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .hero { animation: fadeIn 0.5s ease; }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 16px; }
+    .container { padding: 0 1rem; }
+    .hero { padding: 3rem 0 2.5rem; }
+    .cta-section { flex-direction: column; }
+  }
+</style>
 </head>
 <body>
-  <aside>
-    <img src="foto.jpg" alt="Agustín Marquardt">
-    <h1>Agustín Marquardt</h1>
-    <nav>
-      <a href="#inicio">🏠 Inicio</a>
-      <a href="#sobremi">👤 Sobre mí</a>
-      <a href="#resumen">📄 Resumen</a>
-      <a href="#portafolio">📁 Portafolio</a>
-      <a href="#laborales">💼 Proyectos Laborales</a>
-      <a href="#universitarios">🎓 Proyectos Universitarios</a>
-      <a href="#contacto">✉️ Contacto</a>
-      <a href="cv.pdf" download>📥 Descargar CV</a>
-      <a href="#idioma">🌐 Idioma</a>
-    </nav>
-  </aside>
 
-  <main>
-    <section id="inicio">
-      <h2>Inicio</h2>
-      <p>Bienvenido a mi portfolio profesional.</p>
-    </section>
+<nav>
+  <a class="nav-logo" href="#">Marquardt</a>
+  <div class="nav-links">
+    <a href="#proyectos">Proyectos</a>
+    <a href="#competencias">Competencias</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
 
-    <section id="sobremi">
-      <h2>Sobre mí</h2>
-      <div class="profile-section">
-        <img src="foto.jpg" alt="Foto de Agustín Marquardt">
-        <div class="profile-details">
-          <h3>Analista Funcional & Estudiante de Ingeniería en Sistemas</h3>
-          <em>"Impulso soluciones tecnológicas eficientes, humanas y automatizadas. Me apasiona unir negocio con innovación."</em>
-          <div class="profile-grid">
-            <div><span><strong>📅 Fecha Nac.:</strong> 03 Mar 1997</span></div>
-            <div><span><strong>🎂 Edad:</strong> 28</span></div>
-            <div><span><strong>🎓 Grado:</strong> 5° Año Ingeniería en Sistemas (UTN)</span></div>
-            <div><span><strong>📧 Email:</strong> agustinmarquardt@gmail.com</span></div>
-            <div><span><strong>📱 Teléfono:</strong> +54 341 254-2255</span></div>
-            <div><span><strong>🌍 Ciudad:</strong> Rosario, Santa Fe, Argentina</span></div>
-            <div><span><strong>💼 Nacionalidad:</strong> Argentino</span></div>
-            <div><span><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/agustinmarquardt/" target="_blank">Perfil</a></span></div>
-          </div>
-          <p>Estoy en constante formación en el área de sistemas y automatización, buscando siempre soluciones escalables y sostenibles para las organizaciones. Me enfoco en transformar necesidades reales en herramientas digitales de impacto.</p>
-        </div>
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">Portfolio profesional</p>
+      <h1>Agustín Marquardt<br><em>Analista Funcional Sr.</em></h1>
+      <p class="hero-bio">
+        Más de 4 años conectando necesidades de negocio con soluciones tecnológicas concretas — desde el relevamiento hasta el despliegue en producción. Especializado en automatización, gestión ágil e innovación con IA en el sector salud.
+      </p>
+      <div class="hero-chips">
+        <span class="chip">Rosario, Santa Fe</span>
+        <span class="chip">UTN · 35/39 materias</span>
+        <span class="chip">Sector salud</span>
+        <span class="chip">SCRUM · KANBAN</span>
+        <span class="chip">IA aplicada</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn-primary" href="mailto:agustinmarquardt@gmail.com">Escribirme</a>
+        <a class="btn-secondary" href="https://linkedin.com/in/agustin-marquardt" target="_blank">LinkedIn ↗</a>
       </div>
     </section>
 
-    <section id="resumen">
-      <h2>Resumen</h2>
-      <p>Experiencia en Salesforce, JIRA, bots con GPT‑4.1, modelos predictivos en R, BI, ETL y metodologías ágiles.</p>
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat"><span class="stat-val">4+</span><span class="stat-label">Años de experiencia</span></div>
+      <div class="stat"><span class="stat-val">1000</span><span class="stat-label">Usuarios impactados</span></div>
+      <div class="stat"><span class="stat-val">4</span><span class="stat-label">Centros implementados</span></div>
+      <div class="stat"><span class="stat-val">35/39</span><span class="stat-label">Materias UTN</span></div>
+    </div>
+
+    <!-- PROYECTOS -->
+    <section class="section" id="proyectos">
+      <div class="section-header">
+        <span class="section-label">Proyectos</span>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <div class="filter-row">
+            <button class="ftag active" onclick="filterCards('todos', this)">Todos</button>
+            <button class="ftag" onclick="filterCards('avalian', this)">Avalian</button>
+            <button class="ftag" onclick="filterCards('gamma', this)">Grupo Gamma</button>
+          </div>
+          <button class="btn-secondary" onclick="openModal()" style="font-size:12px; padding:5px 12px;">+ Agregar proyecto</button>
+        </div>
+      </div>
+
+      <div class="projects" id="projects-list">
+
+        <!-- PROYECTO 1: BOT AVA -->
+        <div class="pcard" data-empresa="avalian">
+          <div class="pcard-header" onclick="toggleCard(this)">
+            <div class="pcard-left">
+              <div class="pcard-tags">
+                <span class="tag tag-empresa-avalian">Avalian Salud</span>
+                <span class="tag tag-grande">Proyecto grande</span>
+                <span class="tag tag-lider">Líder de producto</span>
+              </div>
+              <p class="pcard-title">Bot institucional AVA</p>
+              <p class="pcard-impact">Primer asistente conversacional interno de la organización, con acceso al gestor documental completo para 1.000 colaboradores.</p>
+            </div>
+            <div class="chevron">▾</div>
+          </div>
+          <div class="pcard-detail">
+            <div class="detail-grid">
+              <div class="detail-block">
+                <p class="detail-label">El problema</p>
+                <p class="detail-val">La información institucional estaba dispersa en documentos internos sin acceso unificado. Las áreas perdían tiempo consultando a RRHH y Legales por datos que podían estar disponibles al instante.</p>
+              </div>
+              <div class="detail-block">
+                <p class="detail-label">Mi rol</p>
+                <p class="detail-val">Líder de Producto de Innovación — responsable del diseño conceptual, la arquitectura funcional y la coordinación con el equipo técnico desde el inicio hasta el despliegue.</p>
+              </div>
+            </div>
+            <p class="detail-list-title">Lo que hice concretamente</p>
+            <ul class="detail-list">
+              <li>Relevé con todas las áreas qué consultas repetitivas podían automatizarse y definí el alcance inicial.</li>
+              <li>Diseñé la arquitectura conversacional y los flujos de respuesta del bot.</li>
+              <li>Coordiné la integración con Ollama y el entrenamiento sobre el gestor documental clasificado.</li>
+              <li>Gestioné el piloto con usuarios internos y ajusté el modelo según el feedback real.</li>
+              <li>Decidí usar modelo local para garantizar la confidencialidad de la información institucional.</li>
+            </ul>
+            <div class="impact-box">
+              <div class="impact-dot"></div>
+              <p class="impact-text">Primera iniciativa de IA generativa de Avalian. Presentada a 1.000 colaboradores, redujo la dependencia de consultas manuales al área de RRHH y Legales.</p>
+            </div>
+            <div class="stack-row">
+              <span class="stack-chip">Ollama</span>
+              <span class="stack-chip">OpenWeb UI</span>
+              <span class="stack-chip">LLM local</span>
+              <span class="stack-chip">Gestor documental</span>
+              <span class="stack-chip">Jira</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 2: YOIZEN -->
+        <div class="pcard" data-empresa="gamma">
+          <div class="pcard-header" onclick="toggleCard(this)">
+            <div class="pcard-left">
+              <div class="pcard-tags">
+                <span class="tag tag-empresa-gamma">Instituto Gamma</span>
+                <span class="tag tag-mediano">Proyecto mediano</span>
+                <span class="tag tag-admin">Administrador</span>
+              </div>
+              <p class="pcard-title">Implementación Yoizen — gestión de redes sociales y contactos</p>
+              <p class="pcard-impact">Centralización de todos los canales digitales de contacto en una sola plataforma, con capacitación a 25 personas en 3 áreas.</p>
+            </div>
+            <div class="chevron">▾</div>
+          </div>
+          <div class="pcard-detail">
+            <div class="detail-grid">
+              <div class="detail-block">
+                <p class="detail-label">El problema</p>
+                <p class="detail-val">Los contactos digitales llegaban por canales dispersos sin trazabilidad ni gestión unificada. El equipo de atención perdía contactos y no podía medir la actividad.</p>
+              </div>
+              <div class="detail-block">
+                <p class="detail-label">Mi rol</p>
+                <p class="detail-val">Administrador del sistema — interlocutor principal con el proveedor, responsable de la implementación, capacitación y adopción por parte de los usuarios.</p>
+              </div>
+            </div>
+            <p class="detail-list-title">Lo que hice concretamente</p>
+            <ul class="detail-list">
+              <li>Coordiné todos los cambios y requerimientos hacia el proveedor Yoizen como referente único.</li>
+              <li>Configuré la plataforma para las necesidades específicas de cada área.</li>
+              <li>Capacité a 25 personas en dos sedes del centro de contacto y en marketing.</li>
+              <li>Redacté instructivos y documentación funcional para usuarios finales.</li>
+              <li>Realicé seguimiento post-implementación con usuarios clave para asegurar la adopción.</li>
+            </ul>
+            <div class="impact-box">
+              <div class="impact-dot"></div>
+              <p class="impact-text">3 áreas operando en una sola plataforma. Publicación, calendarización y gestión de contactos unificadas. 25 usuarios capacitados en 2 sedes.</p>
+            </div>
+            <div class="stack-row">
+              <span class="stack-chip">Yoizen</span>
+              <span class="stack-chip">Documentación funcional</span>
+              <span class="stack-chip">Capacitación de usuarios</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTO 3: LLAMADORES -->
+        <div class="pcard" data-empresa="gamma">
+          <div class="pcard-header" onclick="toggleCard(this)">
+            <div class="pcard-left">
+              <div class="pcard-tags">
+                <span class="tag tag-empresa-gamma">Instituto Gamma</span>
+                <span class="tag tag-mediano">Proyecto mediano</span>
+                <span class="tag tag-funcional">Responsable funcional</span>
+              </div>
+              <p class="pcard-title">Sistema de llamadores para centros médicos</p>
+              <p class="pcard-impact">Integración entre PROGAL y Gestión Online para automatizar el llamado de pacientes por pantalla — implementado en 4 centros con 100% de funcionamiento.</p>
+            </div>
+            <div class="chevron">▾</div>
+          </div>
+          <div class="pcard-detail">
+            <div class="detail-grid">
+              <div class="detail-block">
+                <p class="detail-label">El problema</p>
+                <p class="detail-val">El llamado de pacientes a consultorios se hacía de forma manual y verbal, generando desorden en las salas de espera y demoras en la atención sin trazabilidad del flujo.</p>
+              </div>
+              <div class="detail-block">
+                <p class="detail-label">Mi rol</p>
+                <p class="detail-val">Responsable funcional — diseñé el circuito de integración y coordiné la implementación entre los sistemas involucrados y los cuatro centros médicos.</p>
+              </div>
+            </div>
+            <p class="detail-list-title">Lo que hice concretamente</p>
+            <ul class="detail-list">
+              <li>Relevé el flujo de atención de pacientes en los centros para entender el proceso actual.</li>
+              <li>Diseñé el circuito de integración entre el core PROGAL y el sistema Gestión Online.</li>
+              <li>Definí la lógica: cuando se registra la atención, se dispara automáticamente el llamado en pantalla.</li>
+              <li>Coordiné la implementación en los 4 centros: HPR, IG, Cumbres y Vertientes.</li>
+              <li>Validé el funcionamiento en producción en cada centro.</li>
+            </ul>
+            <div class="impact-box">
+              <div class="impact-dot"></div>
+              <p class="impact-text">Implementado en producción en 4 centros médicos con 100% de funcionamiento. Eliminó el llamado manual y digitalizó el flujo de atención de pacientes.</p>
+            </div>
+            <div class="stack-row">
+              <span class="stack-chip">PROGAL (core)</span>
+              <span class="stack-chip">Gestión Online</span>
+              <span class="stack-chip">Integración de sistemas</span>
+              <span class="stack-chip">BPMN</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /projects-list -->
     </section>
 
-    <section id="portafolio">
-      <h2>Portafolio</h2>
-      <p>Listado general de proyectos destacados.</p>
+    <!-- COMPETENCIAS -->
+    <section class="section" id="competencias">
+      <div class="section-header">
+        <span class="section-label">Competencias clave</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card"><p class="skill-name">Análisis funcional</p><p class="skill-sub">Relevamiento, documentación, historias de usuario</p></div>
+        <div class="skill-card"><p class="skill-name">Liderazgo de producto</p><p class="skill-sub">Definición, roadmap, coordinación de equipos</p></div>
+        <div class="skill-card"><p class="skill-name">Metodologías ágiles</p><p class="skill-sub">SCRUM, KANBAN, Jira Administrator</p></div>
+        <div class="skill-card"><p class="skill-name">Integración de sistemas</p><p class="skill-sub">APIs REST, Postman, SoapUI</p></div>
+        <div class="skill-card"><p class="skill-name">IA aplicada</p><p class="skill-sub">Ollama, LLMs locales, chatbots NLP</p></div>
+        <div class="skill-card"><p class="skill-name">Capacitación y cambio</p><p class="skill-sub">Documentación funcional, adopción, formación</p></div>
+        <div class="skill-card"><p class="skill-name">Modelado de procesos</p><p class="skill-sub">BPMN, UML, Bizagi, cursogramas</p></div>
+        <div class="skill-card"><p class="skill-name">Bases de datos</p><p class="skill-sub">SQL, PL/SQL, MySQL, Oracle</p></div>
+      </div>
     </section>
 
-    <section id="laborales">
-      <h2>Proyectos Laborales</h2>
-      <ul>
-        <li>AVA IA Bot</li>
-        <li>AviaX</li>
-        <li>Módulo Ventas Avalian</li>
-        <li>Predicción de candidatos Avalian</li>
-        <li>Administrador JIRA</li>
-        <li>Administrador Sprout</li>
-      </ul>
+    <!-- CONTACTO / CTA -->
+    <section class="cta-section" id="contacto">
+      <div class="cta-text">
+        <h3>¿Hablamos?</h3>
+        <p>Disponible para nuevos desafíos en análisis funcional,<br>product ownership o arquitectura de soluciones.</p>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="btn-primary" href="mailto:agustinmarquardt@gmail.com">Escribirme</a>
+        <a class="btn-secondary" href="https://linkedin.com/in/agustin-marquardt" target="_blank">LinkedIn ↗</a>
+      </div>
     </section>
 
-    <section id="universitarios">
-      <h2>Proyectos Universitarios</h2>
-      <p>Aquí se detallarán proyectos realizados en el ámbito académico.</p>
-    </section>
+  </div><!-- /container -->
+</main>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Email: <a href="mailto:agustinmarquardt@gmail.com">agustinmarquardt@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/agustinmarquardt/" target="_blank">linkedin.com/in/agustinmarquardt</a></p>
-    </section>
+<footer>
+  <p>Agustín Marquardt · Rosario, Santa Fe · agustinmarquardt@gmail.com</p>
+</footer>
 
-    <section id="idioma">
-      <h2>Idioma</h2>
-      <p>Español | Inglés</p>
-    </section>
+<!-- MODAL AGREGAR PROYECTO -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Agregar proyecto</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
 
-    <footer>
-      <p>&copy; 2025 Agustín Marquardt</p>
-    </footer>
-  </main>
+    <div class="form-row">
+      <label class="form-label">Nombre del proyecto *</label>
+      <input class="form-input" id="f-titulo" type="text" placeholder="Ej: Portal de Facturas — Avalian">
+    </div>
+
+    <div class="form-row-2">
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Empresa *</label>
+        <select class="form-select" id="f-empresa">
+          <option value="avalian">Avalian Salud</option>
+          <option value="gamma">Instituto Gamma</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <label class="form-label">Escala *</label>
+        <select class="form-select" id="f-escala">
+          <option value="grande">Grande</option>
+          <option value="mediano">Mediano</option>
+          <option value="chico">Chico</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row" style="margin-top:1.25rem">
+      <label class="form-label">Tu rol *</label>
+      <select class="form-select" id="f-rol">
+        <option value="lider">Líder de producto</option>
+        <option value="admin">Administrador</option>
+        <option value="funcional">Responsable funcional</option>
+        <option value="colaborador">Colaborador / Participante clave</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Línea de impacto *</label>
+      <input class="form-input" id="f-impacto" type="text" placeholder="Frase corta que resume el resultado del proyecto">
+      <p class="form-hint">Esta frase aparece visible en la card. Sé concreto y medible.</p>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">El problema que resolvía *</label>
+      <textarea class="form-textarea" id="f-problema" placeholder="¿Qué pasaba antes? ¿Qué dolor tenía el área o el usuario?"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Tu rol en detalle *</label>
+      <textarea class="form-textarea" id="f-rol-detalle" placeholder="Describí tu responsabilidad concreta en el proyecto"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Lo que hiciste concretamente *</label>
+      <textarea class="form-textarea" id="f-acciones" placeholder="Listá 3 a 5 acciones concretas. Una por línea, empezando con un verbo." style="min-height:100px"></textarea>
+      <p class="form-hint">Cada línea se convierte en un ítem de la lista. Ej: «Relevé el proceso con el área contable»</p>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Impacto concreto *</label>
+      <textarea class="form-textarea" id="f-resultado" placeholder="¿Qué cambió después del proyecto? ¿Para quién?"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Stack / herramientas <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
+      <input class="form-input" id="f-stack" type="text" placeholder="Ej: Jira, Bizagi, Postman, SaludSoft">
+      <p class="form-hint">Separalos con coma.</p>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn-primary" onclick="agregarProyecto()">Agregar al portfolio</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleCard(header) {
+    const detail = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    const isOpen = detail.classList.contains('open');
+    detail.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+  }
+
+  function filterCards(empresa, btn) {
+    document.querySelectorAll('.ftag').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pcard').forEach(card => {
+      card.style.display = (empresa === 'todos' || card.dataset.empresa === empresa) ? '' : 'none';
+    });
+  }
+
+  function openModal() {
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  const rolMap = {
+    lider: { label: 'Líder de producto', cls: 'tag-lider' },
+    admin: { label: 'Administrador', cls: 'tag-admin' },
+    funcional: { label: 'Responsable funcional', cls: 'tag-funcional' },
+    colaborador: { label: 'Colaborador', cls: 'tag-funcional' }
+  };
+  const escalaMap = {
+    grande: { label: 'Proyecto grande', cls: 'tag-grande' },
+    mediano: { label: 'Proyecto mediano', cls: 'tag-mediano' },
+    chico: { label: 'Proyecto chico', cls: 'tag-mediano' }
+  };
+  const empresaMap = {
+    avalian: { label: 'Avalian Salud', cls: 'tag-empresa-avalian' },
+    gamma: { label: 'Instituto Gamma', cls: 'tag-empresa-gamma' },
+    otro: { label: 'Otro', cls: 'tag-empresa-gamma' }
+  };
+
+  function agregarProyecto() {
+    const titulo = document.getElementById('f-titulo').value.trim();
+    const impacto = document.getElementById('f-impacto').value.trim();
+    const problema = document.getElementById('f-problema').value.trim();
+    const rolDetalle = document.getElementById('f-rol-detalle').value.trim();
+    const acciones = document.getElementById('f-acciones').value.trim();
+    const resultado = document.getElementById('f-resultado').value.trim();
+    const stack = document.getElementById('f-stack').value.trim();
+    const empresa = document.getElementById('f-empresa').value;
+    const escala = document.getElementById('f-escala').value;
+    const rol = document.getElementById('f-rol').value;
+
+    if (!titulo || !impacto || !problema || !rolDetalle || !acciones || !resultado) {
+      alert('Por favor completá todos los campos obligatorios (*)');
+      return;
+    }
+
+    const accionesHTML = acciones.split('\n').filter(l => l.trim()).map(l => `<li>${l.trim()}</li>`).join('');
+    const stackHTML = stack ? stack.split(',').map(s => `<span class="stack-chip">${s.trim()}</span>`).join('') : '';
+
+    const e = empresaMap[empresa];
+    const es = escalaMap[escala];
+    const r = rolMap[rol];
+
+    const card = document.createElement('div');
+    card.className = 'pcard';
+    card.dataset.empresa = empresa;
+    card.innerHTML = `
+      <div class="pcard-header" onclick="toggleCard(this)">
+        <div class="pcard-left">
+          <div class="pcard-tags">
+            <span class="tag ${e.cls}">${e.label}</span>
+            <span class="tag ${es.cls}">${es.label}</span>
+            <span class="tag ${r.cls}">${r.label}</span>
+          </div>
+          <p class="pcard-title">${titulo}</p>
+          <p class="pcard-impact">${impacto}</p>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="pcard-detail">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <p class="detail-label">El problema</p>
+            <p class="detail-val">${problema}</p>
+          </div>
+          <div class="detail-block">
+            <p class="detail-label">Mi rol</p>
+            <p class="detail-val">${rolDetalle}</p>
+          </div>
+        </div>
+        <p class="detail-list-title">Lo que hice concretamente</p>
+        <ul class="detail-list">${accionesHTML}</ul>
+        <div class="impact-box">
+          <div class="impact-dot"></div>
+          <p class="impact-text">${resultado}</p>
+        </div>
+        ${stackHTML ? `<div class="stack-row">${stackHTML}</div>` : ''}
+      </div>
+    `;
+
+    document.getElementById('projects-list').appendChild(card);
+
+    ['f-titulo','f-impacto','f-problema','f-rol-detalle','f-acciones','f-resultado','f-stack'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+
+    closeModal();
+
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
 
 </body>
 </html>
